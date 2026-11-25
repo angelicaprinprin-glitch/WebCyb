@@ -1,0 +1,142 @@
+:root {
+  --paper: #fffdf8;
+  --ink: #3e2a30;
+  --muted: #7d5d68;
+  --pink: #f3a9bf;
+  --pink-soft: #fde1ea;
+  --pink-deep: #c8507b;
+  --yellow: #fff6d8;
+  --yellow-deep: #f7d98a;
+  --brown: #5b3a2e;
+  --high: #b3264f;
+  --medium: #a2620a;
+  --low: #2f7a4f;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  position: relative;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Nunito, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Cheetah decorations */
+.cheetah-band {
+  height: 40px;
+  background: url("cheetah.svg") repeat-x center / 130px;
+  border-bottom: 3px solid var(--pink);
+  box-shadow: 0 3px 0 0 var(--yellow-deep), 0 6px 0 0 var(--pink-soft);
+}
+.cheetah-edge {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 40px;
+  background: url("cheetah.svg") repeat-y top / 130px;
+  border-right: 3px solid var(--pink);
+  box-shadow: 3px 0 0 0 var(--yellow-deep), 6px 0 0 0 var(--pink-soft);
+}
+
+/* Page follows the notebook sketch: pink margin line on the left */
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 40px 24px 40px 84px;
+  position: relative;
+}
+.page::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 58px;
+  border-left: 2px solid var(--pink);
+}
+
+h1, h2 { font-family: "Playfair Display", Georgia, serif; color: var(--ink); }
+h1 { font-size: clamp(3rem, 9vw, 4.6rem); margin: 0; line-height: 1; letter-spacing: -.01em; }
+h2 { font-size: 1.9rem; margin: 0 0 10px; }
+.tagline { margin: 8px 0 0; color: var(--pink-deep); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; font-size: .8rem; }
+
+/* Quote: right side, like the sketch */
+.quote { margin: 40px 0 56px auto; max-width: 520px; text-align: center; }
+.quote blockquote {
+  margin: 0; font-family: "Playfair Display", Georgia, serif; font-style: italic; font-size: 1.45rem; line-height: 1.35;
+}
+.quote blockquote::before { content: "\201C"; color: var(--pink-deep); }
+.quote blockquote::after { content: "\201D"; color: var(--pink-deep); }
+.quote figcaption { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+.quote figcaption::before { content: "- "; }
+
+/* What is phishing + image */
+.phishing { display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: end; }
+.phishing-text p { margin: 0 0 12px; }
+.art { margin: 0; justify-self: end; width: 100%; max-width: 300px; transform: translateY(24px); }
+.art svg { display: block; width: 100%; height: auto; border: 3px solid var(--brown); outline: 6px solid var(--yellow-deep); outline-offset: -1px; }
+
+/* Insert email */
+.insert { margin-top: 48px; }
+.hint { margin: 0 0 16px; color: var(--muted); max-width: 640px; }
+textarea {
+  display: block; width: 100%; min-height: 280px; resize: vertical;
+  background: #fff; color: var(--ink);
+  border: 2.5px solid var(--ink); border-radius: 2px;
+  padding: 22px 26px; font: 500 1rem/1.6 Nunito, system-ui, sans-serif;
+}
+textarea::placeholder { font-family: "Playfair Display", Georgia, serif; font-size: 1.9rem; color: #b89aa4; }
+textarea:focus { outline: 4px solid var(--pink-soft); border-color: var(--pink-deep); }
+.form-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.generate {
+  margin-top: -2.5px; margin-right: 24px;
+  border: 2.5px solid var(--ink); border-top: 0; border-radius: 0 0 10px 10px;
+  background: var(--pink); color: var(--ink);
+  font: 800 1.05rem Nunito, system-ui, sans-serif; letter-spacing: .04em;
+  padding: 10px 26px; cursor: pointer;
+}
+.generate:hover { background: var(--pink-deep); color: #fff; }
+.generate:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.error { margin: 8px 0 0; color: var(--high); font-weight: 700; min-height: 1em; }
+
+/* Results */
+.results { margin-top: 36px; }
+.results-box {
+  border: 2.5px solid var(--ink); border-radius: 2px; background: var(--yellow);
+  padding: 26px 30px; min-height: 160px;
+}
+.results-box.level-high { border-color: var(--high); box-shadow: inset 0 0 0 4px #f8d3de; }
+.results-box.level-medium { border-color: var(--medium); box-shadow: inset 0 0 0 4px #f6e2b3; }
+.results-box.level-low { border-color: var(--low); box-shadow: inset 0 0 0 4px #d5ecd9; }
+.placeholder { margin: 30px 0; text-align: center; font-family: "Playfair Display", Georgia, serif; font-size: 1.9rem; color: #b89a7e; }
+
+.verdict-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+.verdict { font-family: "Playfair Display", Georgia, serif; font-size: 2rem; font-weight: 800; margin: 0; }
+.level-high .verdict { color: var(--high); } .level-medium .verdict { color: var(--medium); } .level-low .verdict { color: var(--low); }
+.risk { margin: 0; color: var(--muted); font-weight: 600; }
+.meter { height: 10px; max-width: 360px; margin: 12px 0 4px; background: #fff; border: 1.5px solid var(--ink); border-radius: 99px; overflow: hidden; }
+.meter span { display: block; height: 100%; background: linear-gradient(90deg, #7cc59a, var(--yellow-deep), var(--pink-deep)); }
+
+.results-box h3 { font-family: "Playfair Display", Georgia, serif; font-size: 1.3rem; margin: 26px 0 8px; }
+.says { margin: 0; padding-left: 16px; border-left: 4px solid var(--pink); }
+.vulns { list-style: none; margin: 0; padding: 0; }
+.vulns > li { padding: 12px 0; border-bottom: 1.5px dashed #e2c37a; }
+.vulns > li:last-child { border-bottom: 0; }
+.vuln-name { font-weight: 800; }
+.vuln-name .pts { font-weight: 600; color: var(--muted); font-size: .9rem; }
+.vulns ul { margin: 4px 0 0; padding-left: 20px; color: var(--ink); }
+.advice { margin: 0; padding-left: 22px; }
+.advice li { margin: 4px 0; }
+
+footer { margin-top: 56px; padding-top: 18px; border-top: 2px solid var(--pink); color: var(--muted); font-size: .88rem; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .cheetah-edge, .page::before { display: none; }
+  .page { padding: 28px 16px 32px; }
+  .quote { margin: 28px 0 36px; max-width: none; }
+  .quote blockquote { font-size: 1.3rem; }
+  .phishing { grid-template-columns: 1fr; gap: 20px; }
+  .art { justify-self: center; transform: none; max-width: 260px; }
+  .insert { margin-top: 36px; }
+  textarea { min-height: 220px; padding: 16px; }
+  textarea::placeholder { font-size: 1.4rem; }
+  .results-box { padding: 20px 18px; }
+  .placeholder { font-size: 1.4rem; }
+}

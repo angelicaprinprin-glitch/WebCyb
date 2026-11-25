@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebCyb | Phishing Email Checker</title>
+  <meta name="description" content="Paste an email you received and WebCyb tells you if it is phishing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cheetah-band" aria-hidden="true"></div>
+  <div class="cheetah-edge" aria-hidden="true"></div>
+
+  <main class="page">
+    <header class="top">
+      <h1>WebCyb</h1>
+      <p class="tagline">Your friendly phishing email checker</p>
+    </header>
+
+    <figure class="quote">
+      <blockquote>Phishing is the art of tricking people into opening the door themselves &mdash;
+        the strongest lock means nothing if you hand over the key.</blockquote>
+    </figure>
+
+    <section class="phishing" aria-labelledby="what-title">
+      <div class="phishing-text">
+        <h2 id="what-title">What is phishing?</h2>
+        <p>
+          Phishing is when criminals send messages that pretend to come from someone you trust, like your bank,
+          a delivery company, your school or a popular website. They want you to click a dangerous link, open a
+          harmful file, or give away private information such as passwords, codes or card numbers.
+        </p>
+        <p>
+          Watch out for emails that rush or scare you, ask for personal information, promise prizes, or come
+          from addresses and links that look almost right, but aren't.
+        </p>
+      </div>
+
+      <figure class="art">
+        <svg viewBox="0 0 260 200" role="img" aria-labelledby="art-title">
+          <title id="art-title">A fishing hook pulling a password out of an email</title>
+          <defs>
+            <pattern id="spots" width="120" height="120" patternUnits="userSpaceOnUse" patternTransform="scale(.55)">
+              <image href="cheetah.svg" width="120" height="120"/>
+            </pattern>
+          </defs>
+          <rect width="260" height="200" fill="#fff6d8"/>
+          <circle cx="132" cy="112" r="74" fill="#fde1ea"/>
+          <!-- fishing line + hook -->
+          <path d="M150 0 V58" stroke="#5b3a2e" stroke-width="2.5"/>
+          <path d="M150 58 v22 a12 12 0 1 1 -22 -6" fill="none" stroke="#5b3a2e" stroke-width="5" stroke-linecap="round"/>
+          <path d="M128 74 l-6 -8 l10 2 z" fill="#5b3a2e"/>
+          <!-- letter being pulled out -->
+          <g transform="rotate(-6 140 100)">
+            <rect x="92" y="66" width="104" height="70" rx="6" fill="#ffffff" stroke="#d9668f" stroke-width="3"/>
+            <text x="104" y="88" font-family="Nunito, sans-serif" font-size="11" font-weight="800" fill="#5b3a2e">PASSWORD</text>
+            <rect x="104" y="96" width="80" height="14" rx="4" fill="#fde1ea"/>
+            <g fill="#d9668f"><circle cx="114" cy="103" r="3"/><circle cx="125" cy="103" r="3"/><circle cx="136" cy="103" r="3"/><circle cx="147" cy="103" r="3"/><circle cx="158" cy="103" r="3"/></g>
+            <rect x="104" y="116" width="54" height="6" rx="3" fill="#f3c7d5"/>
+          </g>
+          <!-- envelope -->
+          <rect x="70" y="112" width="148" height="72" rx="8" fill="url(#spots)" stroke="#5b3a2e" stroke-width="3"/>
+          <path d="M70 120 L144 160 L218 120" fill="none" stroke="#5b3a2e" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+      </figure>
+    </section>
+
+    <section class="insert" aria-labelledby="insert-title">
+      <h2 id="insert-title"><label for="email">Insert email</label></h2>
+      <p class="hint">
+        WebCyb checks the email you received for the warning signs of phishing and tells you if it is safe.
+        Copy the whole email, including the sender and subject, and paste it below. Your email never leaves your
+        device: WebCyb checks it right in your browser and doesn't save it.
+      </p>
+      <form id="check-form" novalidate>
+        <textarea id="email" name="email" maxlength="30000" spellcheck="false"
+          placeholder="Paste Email Here"></textarea>
+        <div class="form-row">
+          <p id="error" class="error" role="alert"></p>
+          <button type="submit" class="generate">Generate</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" aria-labelledby="results-title" aria-live="polite">
+      <h2 id="results-title" class="sr-only">Vulnerabilities</h2>
+      <div id="results-box" class="results-box">
+        <p class="placeholder">Vulnerabilities here</p>
+      </div>
+    </section>
+
+    <footer>
+      WebCyb &middot; Computing Seminar project by Angelica Princesa Vicente Gonzalez &middot;
+      Results are guidance, not a guarantee.
+    </footer>
+  </main>
+
+  <script src="detector.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
